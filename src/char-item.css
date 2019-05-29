@@ -1,0 +1,16 @@
+.char-item {
+    border: 2px solid rgb(143, 11, 11);
+    list-style: none;
+    text-align: center;
+    background-color: silver;
+    margin: 5px;
+    width: 200px;
+    height: 250px;
+}
+img {
+    width: 150px;
+}
+
+.char-item:hover {
+   box-shadow: 0 0 50px red;
+}

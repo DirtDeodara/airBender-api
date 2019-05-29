@@ -1,6 +1,8 @@
 import Component from './Component.js';
 import Header from './Header.js';
 import Charlist from './CharList.js';
+import charApi from '../services/char-api.js';
+
 
 class App extends Component {
 
@@ -13,8 +15,13 @@ class App extends Component {
         const main = dom.querySelector('main');
         dom.insertBefore(headerDOM, main);
 
-        const charList = new Charlist({});
+        const charList = new Charlist({ characters: [] });
         main.appendChild(charList.render());
+
+        charApi.getChars()
+            .then(characters => {
+                charList.update({ characters });
+            });
 
         return dom;
     }

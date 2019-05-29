@@ -6,8 +6,10 @@ class CharList extends Component {
     render() {
         const list = this.renderDOM();
         
-        const charItem = new CharItem({});
-        list.appendChild(charItem.render());
+        this.props.characters.forEach(character => {
+            const charItem = new CharItem({ character });
+            list.appendChild(charItem.render());
+        });
 
         return list;
     }
