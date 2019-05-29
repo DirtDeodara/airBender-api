@@ -1,5 +1,9 @@
 import Component from './Component.js';
 import Header from './Header.js';
+import Charlist from './CharList.js';
+import charApi from '../services/char-api.js';
+import Loading from './Loading.js';
+
 
 class App extends Component {
 
@@ -11,6 +15,23 @@ class App extends Component {
 
         const main = dom.querySelector('main');
         dom.insertBefore(headerDOM, main);
+
+        const charList = new Charlist({ characters: [] });
+        main.appendChild(charList.render());
+
+        const loading = new Loading({ loading: true });
+        main.appendChild(loading.render());
+
+        charApi.getChars()
+            .then(characters => {
+                charList.update({ characters });
+            })
+
+            .finally(() => {
+                loading.update({ loading: false });
+            });
+
+        return dom;
     }
 
     renderTemplate() {
