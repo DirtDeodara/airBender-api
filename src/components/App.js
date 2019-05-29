@@ -1,5 +1,6 @@
 import Component from './Component.js';
 import Header from './Header.js';
+import Charlist from './CharList.js';
 
 class App extends Component {
 
@@ -11,6 +12,11 @@ class App extends Component {
 
         const main = dom.querySelector('main');
         dom.insertBefore(headerDOM, main);
+
+        const charList = new Charlist({});
+        main.appendChild(charList.render());
+
+        return dom;
     }
 
     renderTemplate() {
