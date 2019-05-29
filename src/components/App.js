@@ -22,6 +22,31 @@ class App extends Component {
         const loading = new Loading({ loading: true });
         main.appendChild(loading.render());
 
+        
+        function loadCharacters() {
+            const params = window.location.hash.slice(1);
+            const searchParams = new URLSearchParams(params);
+            const allegiance = searchParams.toString();
+
+            loading.update({ loading: true });
+
+            charApi.getChars(allegiance)
+                .then(characters => {
+                    charList.update({ characters });
+                })
+                
+                .finally(() => {
+                    loading.update({ loading: false });
+                });
+        }
+
+        loadCharacters();
+
+        window.addEventListener('hashchange', () => {
+            loadCharacters();
+        });
+
+
         charApi.getChars()
             .then(characters => {
                 charList.update({ characters });

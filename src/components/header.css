@@ -4,3 +4,9 @@ header {
     font-size: 2em;
     text-shadow: 0 0 20px red;
 }
+
+#get-all-link {
+    font-size: .7em;
+    text-shadow: none;
+    color: red;
+}
